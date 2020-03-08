@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)https://www.php-fig.org/psr/psr-0/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>PSR-0: Autoloading Standard - PHP-FIG</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="https://www.php-fig.org/apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="./PSR-0_ Autoloading Standard - PHP-FIG_files/all.css">
+    <link rel="stylesheet" href="./PSR-0_ Autoloading Standard - PHP-FIG_files/pygment_trac.css">
+    <link rel="stylesheet" href="./PSR-0_ Autoloading Standard - PHP-FIG_files/css">
+
+    <link rel="preconnect" href="https://ajax.googleapis.com/" pr="1.0">
+    <link rel="preconnect" href="https://ssl.google-analytics.com/" pr="0.8">
+
+    <meta name="og:title" content="PSR-0: Autoloading Standard - PHP-FIG">
+
+    <meta name="twitter:title" content="PSR-0: Autoloading Standard - PHP-FIG">
+    <meta name="twitter:site" content="@phpfig">
+    <meta name="twitter:creator" content="@phpfig">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content="https://www.php-fig.org/img/social-banner.png">
+    <meta property="og:image" content="https://www.php-fig.org/img/social-banner.png">
+
+    <meta property="og:type" content="website">
+
+    <meta name="description" content="We&#39;re a group of established PHP projects whose goal is to talk about commonalities between our projects and find ways we can work better together.">
+    <meta name="twitter:description" content="We&#39;re a group of established PHP projects whose goal is to talk about commonalities between our projects and find ways we can work better together.">
+    <meta name="og:description" content="We&#39;re a group of established PHP projects whose goal is to talk about commonalities between our projects and find ways we can work better together.">
+
+</head>
+<body>
+
+<header class="site_header">
+    <div class="center">
+        <a class="site_logo" href="https://www.php-fig.org/">
+            <span class="site_logo__short_name">PHP-FIG</span>
+            <span class="site_logo__long_name">The PHP Framework Interop Group</span>
+        </a>
+        <nav class="site_menu">
+            <label class="site_menu__dropdown_button" for="site_menu__dropdown_checkbox">Menu</label>
+            <input class="site_menu__dropdown_checkbox" id="site_menu__dropdown_checkbox" type="checkbox">
+            <ul class="site_menu__list">
+                <li class="site_menu__item">
+                    <a class="site_menu__link " href="https://www.php-fig.org/">Home</a>
+                </li>
+                <li class="site_menu__item">
+                    <a class="site_menu__link " href="https://www.php-fig.org/blog">Blog</a>
+                </li>
+                <li class="site_menu__item">
+                    <a class="site_menu__link site_menu__link--active" href="https://www.php-fig.org/psr">PSRs</a>
+                </li>
+                <li class="site_menu__item">
+                    <a class="site_menu__link " href="https://www.php-fig.org/personnel">Personnel</a>
+                </li>
+                <li class="site_menu__item">
+                    <a class="site_menu__link " href="https://www.php-fig.org/bylaws">Bylaws</a>
+                </li>
+                <li class="site_menu__item">
+                    <a class="site_menu__link " href="https://www.php-fig.org/faqs">FAQs</a>
+                </li>
+                <li class="site_menu__item">
+                    <a class="site_menu__link " href="https://www.php-fig.org/get-involved">Get Involved</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="page_content">
+    <div class="page_banner">
+    <div class="center">
+        <h1 class="page_banner__title">
+                        PSR-0: Autoloading Standard
+                    </h1>
+    </div>
+</div>
+
+<div class="center">
+    <div class="page_content__padding">
+                    <div class="columns">
+    <div class="columns__column columns__column--8">
+        <div class="markdown">
+                                            <h1 id="autoloading-standard">Autoloading Standard</h1>
+
+<blockquote>
+  <p><strong>Deprecated</strong> - As of 2014-10-21 PSR-0 has been marked as deprecated. <a href="https://www.php-fig.org/psr/psr-4/">PSR-4</a> is now recommended
+as an alternative.</p>
+</blockquote>
+
+<p>The following describes the mandatory requirements that must be adhered
+to for autoloader interoperability.</p>
+
+<h2 id="mandatory"><a href="https://www.php-fig.org/psr/psr-0/#mandatory">Mandatory</a></h2>
+
+<ul>
+  <li>A fully-qualified namespace and class must have the following
+structure <code class="highlighter-rouge">\&lt;Vendor Name&gt;\(&lt;Namespace&gt;\)*&lt;Class Name&gt;</code></li>
+  <li>Each namespace must have a top-level namespace (“Vendor Name”).</li>
+  <li>Each namespace can have as many sub-namespaces as it wishes.</li>
+  <li>Each namespace separator is converted to a <code class="highlighter-rouge">DIRECTORY_SEPARATOR</code> when
+loading from the file system.</li>
+  <li>Each <code class="highlighter-rouge">_</code> character in the CLASS NAME is converted to a
+<code class="highlighter-rouge">DIRECTORY_SEPARATOR</code>. The <code class="highlighter-rouge">_</code> character has no special meaning in the
+namespace.</li>
+  <li>The fully-qualified namespace and class are suffixed with <code class="highlighter-rouge">.php</code> when
+loading from the file system.</li>
+  <li>Alphabetic characters in vendor names, namespaces, and class names may
+be of any combination of lower case and upper case.</li>
+</ul>
+
+<h2 id="examples"><a href="https://www.php-fig.org/psr/psr-0/#examples">Examples</a></h2>
+
+<ul>
+  <li><code class="highlighter-rouge">\Doctrine\Common\IsolatedClassLoader</code> =&gt; <code class="highlighter-rouge">/path/to/project/lib/vendor/Doctrine/Common/IsolatedClassLoader.php</code></li>
+  <li><code class="highlighter-rouge">\Symfony\Core\Request</code> =&gt; <code class="highlighter-rouge">/path/to/project/lib/vendor/Symfony/Core/Request.php</code></li>
+  <li><code class="highlighter-rouge">\Zend\Acl</code> =&gt; <code class="highlighter-rouge">/path/to/project/lib/vendor/Zend/Acl.php</code></li>
+  <li><code class="highlighter-rouge">\Zend\Mail\Message</code> =&gt; <code class="highlighter-rouge">/path/to/project/lib/vendor/Zend/Mail/Message.php</code></li>
+</ul>
+
+<h2 id="underscores-in-namespaces-and-class-names"><a href="https://www.php-fig.org/psr/psr-0/#underscores-in-namespaces-and-class-names">Underscores in Namespaces and Class Names</a></h2>
+
+<ul>
+  <li><code class="highlighter-rouge">\namespace\package\Class_Name</code> =&gt; <code class="highlighter-rouge">/path/to/project/lib/vendor/namespace/package/Class/Name.php</code></li>
+  <li><code class="highlighter-rouge">\namespace\package_name\Class_Name</code> =&gt; <code class="highlighter-rouge">/path/to/project/lib/vendor/namespace/package_name/Class/Name.php</code></li>
+</ul>
+
+<p>The standards we set here should be the lowest common denominator for
+painless autoloader interoperability. You can test that you are
+following these standards by utilizing this sample SplClassLoader
+implementation which is able to load PHP 5.3 classes.</p>
+
+<h2 id="example-implementation"><a href="https://www.php-fig.org/psr/psr-0/#example-implementation">Example Implementation</a></h2>
+
+<p>Below is an example function to simply demonstrate how the above
+proposed standards are autoloaded.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+
+<span class="k">function</span> <span class="nf">autoload</span><span class="p">(</span><span class="nv">$className</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$className</span> <span class="o">=</span> <span class="nb">ltrim</span><span class="p">(</span><span class="nv">$className</span><span class="p">,</span> <span class="s1">'\\'</span><span class="p">);</span>
+    <span class="nv">$fileName</span>  <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+    <span class="nv">$namespace</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$lastNsPos</span> <span class="o">=</span> <span class="nb">strrpos</span><span class="p">(</span><span class="nv">$className</span><span class="p">,</span> <span class="s1">'\\'</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nv">$namespace</span> <span class="o">=</span> <span class="nb">substr</span><span class="p">(</span><span class="nv">$className</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">$lastNsPos</span><span class="p">);</span>
+        <span class="nv">$className</span> <span class="o">=</span> <span class="nb">substr</span><span class="p">(</span><span class="nv">$className</span><span class="p">,</span> <span class="nv">$lastNsPos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="nv">$fileName</span>  <span class="o">=</span> <span class="nb">str_replace</span><span class="p">(</span><span class="s1">'\\'</span><span class="p">,</span> <span class="nx">DIRECTORY_SEPARATOR</span><span class="p">,</span> <span class="nv">$namespace</span><span class="p">)</span> <span class="o">.</span> <span class="nx">DIRECTORY_SEPARATOR</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nv">$fileName</span> <span class="o">.=</span> <span class="nb">str_replace</span><span class="p">(</span><span class="s1">'_'</span><span class="p">,</span> <span class="nx">DIRECTORY_SEPARATOR</span><span class="p">,</span> <span class="nv">$className</span><span class="p">)</span> <span class="o">.</span> <span class="s1">'.php'</span><span class="p">;</span>
+
+    <span class="k">require</span> <span class="nv">$fileName</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nb">spl_autoload_register</span><span class="p">(</span><span class="s1">'autoload'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="splclassloader-implementation"><a href="https://www.php-fig.org/psr/psr-0/#splclassloader-implementation">SplClassLoader Implementation</a></h2>
+
+<p>The following gist is a sample SplClassLoader implementation that can
+load your classes if you follow the autoloader interoperability
+standards proposed above. It is the current recommended way to load PHP
+5.3 classes that follow these standards.</p>
+
+<ul>
+  <li><a href="http://gist.github.com/221634">http://gist.github.com/221634</a></li>
+</ul>
+
+
+                    </div>
+    </div>
+        <div class="columns__column columns__column--4 columns__column--padding_left">
+        <nav class="sidebar">
+            <h2 class="sidebar__title">Additional Info:</h2>
+            <ul class="sidebar__list">
+                                    <li class="sidebar__item">
+                        <a class="sidebar__link sidebar__link--active" href="https://www.php-fig.org/psr/psr-0/">PSR-0: Autoloading Standard</a>
+                    </li>
+                            </ul>
+        </nav>
+    </div>
+    </div>
+
+            </div>
+</div>
+</div>
+
+<div class="site_footer_links">
+    <div class="center">
+        <div class="site_footer_links__content">
+            <ul class="site_footer_links__list">
+                <li class="site_footer_links__item site_footer_links__item--twitter">
+                    <a class="site_footer_links__link" href="https://twitter.com/phpfig">Follow us on Twitter</a>
+                </li>
+                <li class="site_footer_links__item site_footer_links__item--irc">
+                    <a class="site_footer_links__link" href="https://www.php-fig.org/irc/">Chat on IRC Channel</a>
+                </li>
+                <li class="site_footer_links__item site_footer_links__item--github">
+                    <a class="site_footer_links__link" href="https://github.com/php-fig">Contribute via GitHub</a>
+                </li>
+                <li class="site_footer_links__item site_footer_links__item--mailing_list">
+                    <a class="site_footer_links__link" href="https://groups.google.com/forum/?fromgroups#!forum/php-fig">Join our mailing list</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<footer class="site_footer">
+    <div class="center">
+        <span class="site_footer__section">© <script type="text/javascript" async="" src="./PSR-0_ Autoloading Standard - PHP-FIG_files/ga.js.download"></script><script type="text/javascript">document.write(new Date().getFullYear());</script>2020 PHP Framework Interop Group.</span>
+        <span class="site_footer__section">Site design by <a class="site_footer__link" href="https://twitter.com/reinink" target="_blank">Jonathan Reinink</a>.</span>
+        <span class="site_footer__section platform_sh_widget">Hosting sponsored by the <a title="platform.sh" href="https://platform.sh/?utm_campaign=sponsored_sites&amp;utm_source=php_fig" target="_blank"><img class="platformsh-logo" src="./PSR-0_ Autoloading Standard - PHP-FIG_files/platform-sh-logo.png" alt="platform.sh logo" style="padding: 0 3px 0 3px;height: 1.1em; vertical-align: text-bottom;"></a> <a class="site_footer__link" href="https://platform.sh/?utm_campaign=sponsored_sites&amp;utm_source=php_fig" target="_blank">PHP PaaS</a></span>
+    </div>
+</footer>
+
+<script src="./PSR-0_ Autoloading Standard - PHP-FIG_files/jquery.min.js.download"></script>
+<script src="./PSR-0_ Autoloading Standard - PHP-FIG_files/main.js.download"></script>
+<script type="text/javascript">
+    var _gaq = _gaq || [];_gaq.push(['_setAccount','UA-1997599-8']);_gaq.push(['_setDomainName','php-fig.org']);_gaq.push(['_trackPageview']);
+    (function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src='https://ssl.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();
+</script>
+
+
+
+</body></html>
